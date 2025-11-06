@@ -3,8 +3,8 @@
 **Prazo final 25/11/2025**
 
 ## Componentes principais
-- [Projeto de Desenvolvimento de Software](./docs/requirements/Projeto-de-Desenvolvimento-de-Software.md)
-- [Relatório de Processo e Qualidade](./docs/requirements/Relatório-de-Processo-e-Qualidade)
+- [Projeto de Desenvolvimento de Software](docs/requirements/Projeto-de-Desenvolvimento-de-Software.md)
+- [Relatório de Processo e Qualidade](docs/requirements/Relatório-de-Processo-e-Qualidade.md)
 
 ### Nosso tema:
 
