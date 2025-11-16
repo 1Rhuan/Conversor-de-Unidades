@@ -27,7 +27,47 @@ Exemplo de resposta
   "resultado": 55.20
 }
 ```
+### Conversor de Temperatura
+GET /temp?from=C&to=F&value=30
 
+Exemplo de Resposta
+```
+{
+  "tipo": "temperatura",
+  "from": "C",
+  "to": "F",
+  "valor": 30,
+  "resultado": 86
+}
+```
+### Conversor de Distancia
+GET /dist?from=km&to=mi&value=10
+
+Exemplo de resposta
+```
+{
+  "tipo": "distância",
+  "from": "km",
+  "to": "mi",
+  "valor": 10,
+  "resultado": 6.21371
+}
+
+```
+### Conversor de Peso 
+GET /peso?from=kg&to=lb&value=50
+
+Exemplo de Resposta
+```
+{
+  "tipo": "peso",
+  "from": "kg",
+  "to": "lb",
+  "valor": 50,
+  "resultado": 110.231
+}
+
+```
 ## Boas práticas sugeridas
 - Validar parâmetros (tipo e unidades) no backend para evitar conversões incompatíveis.
 - Tratar unidades e tipos de forma case-insensitive.
