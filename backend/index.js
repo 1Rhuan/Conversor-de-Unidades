@@ -55,6 +55,35 @@ app.get('/api/temp', (req, res) => {
     });
 })
 
+app.get('/api/dist', (res, res) => {
+    const { from, to, value } = req.query;
+    const num = parseFloat(value);
+
+    if (!from || !to || isNaN(num)) {
+        return res.status(400).json({ error: "Use: /dist?from=km&to=mi&value=10" });
+    }
+
+    let result;
+
+    if (from === "km" && to === "mi") {
+        result = num * 0.621371;
+    } else if (from === "mi" && to === "km") {
+        result = num / 0.621371;
+    } else {
+        return res.status(400).json({ error: "Conversão inválida. Use km↔mi." });
+    }
+
+    res.json({
+        tipo: "distância",
+        from,
+        to,
+        valor: num,
+        resultado: result
+    });
+});
+
+
+
 app.listen(8080, () => {
         console.log('rodando em 8080')
 })
