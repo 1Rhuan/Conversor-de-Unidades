@@ -4,7 +4,7 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/moedas', (req, res) => {
+app.get('api/moedas', (req, res) => {
     const { from, to, amount } = req.query;
 
     if (!from || !to || !amount) {
@@ -28,6 +28,32 @@ app.get('/moedas', (req, res) => {
     }
 })
 
+app.get('/api/temp', (req, res) => {
+    const { from, to, value } = req.query;
+    const num = parseFloat(value);
+
+    if (!from || !to || isNaN(num)) {
+        return res.status(400).json({ error: "Use: /temp?from=C&to=F&value=30" });
+    }
+
+    let result;
+
+    if (from === "C" && to === "F") {
+        result = (num * 9/5) + 32;
+    } else if (from === "F" && to === "C") {
+        result = (num - 32) * 5/9;
+    } else {
+        return res.status(400).json({ error: "Conversão inválida. Use C↔F." });
+    }
+
+    res.json({
+        tipo: "temperatura",
+        from,
+        to,
+        valor: num,
+        resultado: result
+    });
+})
 
 app.listen(8080, () => {
         console.log('rodando em 8080')
