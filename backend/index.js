@@ -82,6 +82,32 @@ app.get('/api/dist', (res, res) => {
     });
 });
 
+app.get("/api/peso", (req,res) => {
+    const { from, to, value } = req.query;
+    const num = parseFloat(value);
+
+    if (!from || !to || isNaN(num)) {
+        return res.status(400).json({ error: "Use: /peso?from=kg&to=lb&value=50" });
+    }
+
+    let result;
+
+    if (from === "kg" && to === "lb") {
+        result = num * 2.20462;
+    } else if (from === "lb" && to === "kg") {
+        result = num / 2.20462;
+    } else {
+        return res.status(400).json({ error: "Conversão inválida. Use kg↔lb." });
+    }
+
+    res.json({
+        tipo: "peso",
+        from,
+        to,
+        valor: num,
+        resultado: result
+    });
+});
 
 
 app.listen(8080, () => {
