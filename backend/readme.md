@@ -15,47 +15,16 @@ Fluxo:
 
 ## Endpoints
 
-### Listar tipos de medida
-GET /api/unidades
+### Conversor de Moedas
+GET /api/moedas
 
-Exemplo de resposta:
-```json
-[
-  "Peso",
-  "Moeda",
-  "Temperatura"
-]
+Exemplo de resposta
 ```
-
-### Listar unidades de um tipo
-O tipo deve ser passado na URL.
-
-GET /api/unidades/:tipo
-
-Exemplo:
-GET /api/unidades/peso
-
-Exemplo de resposta:
-```json
-[
-  "Libras",
-  "Kg",
-  "Gramas"
-]
-```
-
-### Converter um valor entre duas unidades compatíveis
-Recomendação de query params: from, to e value.
-
-GET /api/unidades/:tipo/convert?from=Kg&to=Libras&value=1
-
-Exemplo:
-GET /api/unidades/peso/convert?from=Kg&to=Libras&value=1
-
-Exemplo de resposta:
-```json
 {
-  "resultado": 2.20462
+  "from": "USD",
+  "to": "BRL",
+  "amount": "10",
+  "resultado": 55.20
 }
 ```
 
