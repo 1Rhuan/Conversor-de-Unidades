@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Medida</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <aside class="sidebar">
+            <h1 class="sidebar-title">O QUE VOCÊ QUER CONVERTER?</h1>
+            
+            <div class="categories">
+                <a href="medida.html" class="category-btn active">Medida</a>
+                <a href="peso.html" class="category-btn">Peso</a>
+                <a href="monetario.html" class="category-btn">Monetário</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="converter-box">
+                <h2 class="screen-title">CONVENSOR DE MEDIDAS</h2>
+                
+                <div class="converter-section">
+                    <div class="input-group">
+                        <label class="input-label">DE</label>
+                        <select class="select-field">
+                            <option value="">Selecione a opção</option>
+                            <option value="metro">Metro (m)</option>
+                            <option value="kilometro">Quilômetro (km)</option>
+                            <option value="centimetro">Centímetro (cm)</option>
+                            <option value="milimetro">Milímetro (mm)</option>
+                          
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">PARA</label>
+                        <select class="select-field">
+                            <option value="">Selecione a opção</option>
+                            <option value="metro">Metro (m)</option>
+                            <option value="kilometro">Quilômetro (km)</option>
+                            <option value="centimetro">Centímetro (cm)</option>
+                            <option value="milimetro">Milímetro (mm)</option>
+                          
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group-full">
+                    <label class="input-label">VALOR</label>
+                    <input type="number" class="value-input" placeholder="Digite o valor que deseja converter">
+                </div>
+
+                <button class="convert-btn">CONVERTER</button>
+
+                <div class="result-box">
+                    <p class="result-text">Resultado</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1 class="sidebar-title">O QUE VOCÊ QUER CONVERTER?</h1>
+            
+            <div class="categories">
+                <a href="medida.html" class="category-btn">Medida</a>
+                <a href="peso.html" class="category-btn">Peso</a>
+                <a href="monetario.html" class="category-btn active">Monetário</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="converter-box">
+                <h2 class="screen-title">CONVENSOR MONETARIO</h2>
+                
+                <div class="converter-section">
+                    <div class="input-group">
+                        <label class="input-label">DE</label>
+                        <select class="select-field">
+                            <option value="">Selecione a opção</option>
+                            <option value="real">Real (R$)</option>
+                            <option value="dolar">Dólar (USD)</option>
+                            <option value="euro">Euro (EUR)</option>
+                            <option value="libra">Libra (GBP)</option>
+                            <option value="iene">Iene (JPY)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">PARA</label>
+                        <select class="select-field">
+                            <option value="">Selecione a opção</option>
+                            <option value="real">Real (R$)</option>
+                            <option value="dolar">Dólar (USD)</option>
+                            <option value="euro">Euro (EUR)</option>
+                            <option value="libra">Libra (GBP)</option>
+                            <option value="iene">Iene (JPY)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group-full">
+                    <label class="input-label">VALOR</label>
+                    <input type="number" class="value-input" placeholder="Digite o valor que deseja converter">
+                </div>
+
+                <button class="convert-btn">CONVERTER</button>
+
+                <div class="result-box">
+                    <p class="result-text">Resultado</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
