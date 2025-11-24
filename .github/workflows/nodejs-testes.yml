@@ -2,9 +2,9 @@ name: CI - Node.js tests
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, backend ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, backend ]
 
 jobs:
   test:
@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 20.x]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,12 +21,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm' # use 'yarn' for Yarn projects
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+        working-directory: backend
 
       - name: Run tests
         run: npm test
+        working-directory: backend
         env:
           CI: true
