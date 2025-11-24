@@ -4,23 +4,42 @@ async function converterMoeda(req, res) {
     const { from, to, amount } = req.query;
 
     if (!from || !to || !amount) {
-        return res.status(400).json({ error: "Parâmetros faltando. Use: /convert?from=USD&to=BRL&amount=10" });
+        return res.status(400).json({
+            error: "Parâmetros faltando. Use: /api/moedas?from=USD&to=BRL&amount=10"
+        });
     }
 
     try {
         const url = `https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`;
         const response = await axios.get(url);
 
-        res.json({
+        const resultado = response?.data?.result;
+
+        if (resultado === undefined || resultado === null) {
+            return res.status(500).json({
+                error: "API externa não retornou resultado válido",
+                detalhes: response.data
+            });
+        }
+
+        return res.json({
             from,
             to,
-            amount,
-            resultado: response.data.result
+            amount: Number(amount),
+            resultado
         });
+
     } catch (error) {
-        res.status(500).json({ error: "Erro ao buscar taxa de câmbio", detalhes: error.message });
+        return res.status(500).json({
+            error: "Erro ao buscar taxa de câmbio",
+            detalhes: error.message
+        });
     }
 }
+
+module.exports = { converterMoeda };
+
+
 
 function converterTemperatura(req, res) {
     const { from, to, value } = req.query;
