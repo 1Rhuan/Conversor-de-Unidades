@@ -39,10 +39,13 @@ Sumário
   9. Ajustes de usabilidade.
   10. Deploy e instruções de uso.
 - Planejamento de iterações (Scrumban):
-  - Fase 1 — Planejamento: 26/10/2025 a 29/10/2025 — Backlog, cronograma, análise de risco.
-  - Iteração 1 (Sprint 1): 30/10/2025 a 12/11/2025 — Core + API mínima + protótipo frontend.
-  - Iteração 2 (Sprint 2): 13/11/2025 a 21/11/2025 — Integração, testes, melhorias.
-  - Finalização: 22/11/2025 a 25/11/2025 — Documentação e entrega.
+
+| Fase / Iteração                         | Início       | Término      | Principais atividades                                   |
+|-----------------------------------------|--------------|--------------|--------------------------------------------------------|
+| Fase 1 — Planejamento                   | 26/10/2025   | 29/10/2025   | Backlog, cronograma, análise de risco                  |
+| Iteração 1 (Sprint 1)                   | 30/10/2025   | 12/11/2025   | Implementação do core, API mínima, protótipo frontend  |
+| Iteração 2 (Sprint 2)                   | 13/11/2025   | 21/11/2025   | Integração frontend-backend, testes, melhorias         |
+| Finalização                             | 22/11/2025   | 25/11/2025   | Documentação final e entrega                           |
 
 #### 1.3. Análise de Risco
 Para cada risco: Probabilidade / Impacto / Mitigação / Contingência
@@ -84,10 +87,28 @@ Para cada risco: Probabilidade / Impacto / Mitigação / Contingência
   - 13/11–21/11: Sprint 2
   - 22/11–25/11: Finalização
 - Cronograma real:
-  - Fase 1: Real conforme planejado.
-  - Sprint 1: Real 30/10 → 14/11 (desvio +2 dias) — motivo: correções e testes adicionais no core.
-  - Sprint 2: Real início 15/11 (atraso de 2 dias); previsão de término ajustada para 24/11 (desvio +3 dias).
-  - Finalização: previsão 25/11 → 27/11 caso haja atraso.
+``` mermaid
+gantt
+  title Cronograma — Planejado vs Real (Scrumban)
+  dateFormat  YYYY-MM-DD
+  axisFormat  %d/%m
+
+  section Fase 1 — Planejamento
+    Planejado :plan1, 2025-10-26, 2025-10-29
+    Real      :real1,  2025-10-26, 2025-10-29
+
+  section Iteração 1 — Sprint 1
+    Planejado :plan2, 2025-10-30, 2025-11-12
+    Real      :real2,  2025-10-30, 2025-11-14
+
+  section Iteração 2 — Sprint 2
+    Planejado :plan3, 2025-11-13, 2025-11-21
+    Real      :real3,  2025-11-15, 2025-11-24
+
+  section Finalização
+    Planejado :plan4, 2025-11-22, 2025-11-25
+    Real (previsão de atraso) :real4, 2025-11-25, 2025-11-27
+```
 - Análise dos desvios:
   - Prioridade na qualidade (correções e testes) provocou atraso sequencial.
   - Ações tomadas: re-priorização do backlog, aumento de revisões colaborativas e redução de escopo não essencial.
@@ -97,36 +118,32 @@ Para cada risco: Probabilidade / Impacto / Mitigação / Contingência
 ### 2. Testes de Software
 
 #### 2.1. Estratégia de Teste
-- Abordagem adotada: TDD adaptado — testes escritos em paralelo/antes ou simultaneamente ao desenvolvimento de funcionalidades quando possível.
+- Abordagem adotada: TDD adaptado — testes escritos simultaneamente ao desenvolvimento de funcionalidades quando possível.
 - Ferramentas principais:
   - Mocha (framework de testes), Chai (asserções), Sinon (mocks/stubs), Supertest (integração HTTP), NYC/Istanbul (cobertura).
 - Princípios:
   - Testes automatizados executáveis via npm test.
   - Isolamento por meio de mocks para dependências externas.
   - Cobertura de cenários de sucesso e erro.
-  - Integração contínua prevista para execução a cada commit/PR (observação: CI para testes deve ser implementado / melhorado — ver seção de conformidade).
+  - Integração contínua prevista para execução a cada commit/PR. CI para testes.
 
 #### 2.2. Tipos de Teste e Evidências
 - Teste de Unidade:
   - Arquivo: backend/test/conversao.test.js
   - Cobertura: funções de conversão testadas (temperatura, distância, peso).
-  - Exemplos: ver trechos de teste "Celsius → Fahrenheit", "Kg → Libras".
-  - Evidência de execução: "16 passing (55ms)" (saída de testes).
+    
+<img width="1239" height="522" alt="Captura de imagem_20251125_162046" src="https://github.com/user-attachments/assets/b76a3a40-15aa-424e-a1ed-f0a775eb2564" />
+  
 - Teste de Integração:
   - Arquivo: backend/test/integracao.test.js
   - Uso de Supertest e Sinon (mock de axios) para simular APIs externas de câmbio.
-  - Exemplo de caso: GET /api/moeda — validação do fluxo request → route → controller → response.
-  - Evidência: saídas de testes de integração presentes no log (2 casos).
+  - 
+<img width="1239" height="141" alt="image" src="https://github.com/user-attachments/assets/5767ed86-fafd-4d4f-a9f6-c7750ee858d1" />
+
 - Teste de Sistema/Funcional (End-to-end / Validação):
   - Casos de erro e entrada inválida testados (ex.: moeda inválida, unidade inválida).
-  - Arquivos: backend/test/conversao.test.js (inclui cenários funcionais).
-  - Evidência: relatórios e trechos das execuções com todos os testes passando.
-- Observações sobre execução:
-  - Como executar (evidência reproduzível):
-    - cd backend
-    - npm install
-    - npm test
-    - npm run test:coverage
+
+<img width="1487" height="965" alt="image" src="https://github.com/user-attachments/assets/ca300490-c6a3-43c6-923c-45d816cc9c70" />
 
 #### 2.3. Métricas de Teste
 - Cobertura de Código (NYC/Istanbul):
@@ -141,15 +158,7 @@ Para cada risco: Probabilidade / Impacto / Mitigação / Contingência
   - Funcionais/Validação: 4
   - Total: 16 (16 passing)
 - Taxa de sucesso dos testes: 100% (16/16)
-- Tempo de execução total: ~55ms
-
-#### 2.4. Observações e ações relacionadas aos testes
-- Boa cobertura geral (~86% statements); gaps em branches de index.js e linhas específicas no controller.
-- Ações recomendadas:
-  - Implementar testes para os branches condicionais não cobertos (index.js).
-  - Adicionar CI (GitHub Actions ou similar) para garantir execução automática de testes nas PRs.
-  - Criar um plano de testes formal (Test Plan) e registro sistemático de resultados por release/sprint.
-
+- Tempo de execução total: ~45ms
 ---
 
 ### 3. Métricas de Software
