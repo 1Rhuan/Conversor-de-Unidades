@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Conversor de Unidades</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <h2>O QUE VOCÊ<br />QUER CONVERTER?</h2>
+        <button class="menu-btn" data-type="temp">Temperatura</button>
+        <button class="menu-btn" data-type="dist">Distância</button>
+        <button class="menu-btn" data-type="peso">Peso</button>
+        <button class="menu-btn" data-type="moedas">Monetário</button>
+      </aside>
+      <main>
+        <h1 id="title"></h1>
+        <form id="converterForm">
+          <label
+            >DE
+            <select id="from"></select>
+          </label>
+          <label
+            >PARA
+            <select id="to"></select>
+          </label>
+          <label
+            >VALOR
+            <input
+              type="text"
+              id="value"
+              placeholder="Digite o valor que deseja converter"
+            />
+          </label>
+          <button type="submit" id="convertBtn">CONVERTER</button>
+        </form>
+        <div id="result"></div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
