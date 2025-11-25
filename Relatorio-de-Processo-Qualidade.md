@@ -99,7 +99,7 @@ gantt
 #### 2.1. Estratégia de Teste
 - Abordagem adotada: TDD adaptado — testes escritos simultaneamente ao desenvolvimento de funcionalidades quando possível.
 - Ferramentas principais:
-  - Mocha (framework de testes), Chai (asserções), Sinon (mocks/stubs), Supertest (integração HTTP), NYC/Istanbul (cobertura).
+  - Mocha (framework de testes), Chai (asserções), Sinon (mocks/stubs), Supertest (integração HTTP).
 - Princípios:
   - Testes automatizados executáveis via npm test.
   - Isolamento por meio de mocks para dependências externas.
