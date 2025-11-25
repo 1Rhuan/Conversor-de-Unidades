@@ -37,10 +37,6 @@ async function converterMoeda(req, res) {
     }
 }
 
-module.exports = { converterMoeda };
-
-
-
 function converterTemperatura(req, res) {
     const { from, to, value } = req.query;
     const num = parseFloat(value);
@@ -49,22 +45,37 @@ function converterTemperatura(req, res) {
         return res.status(400).json({ error: "Use: /temp?from=C&to=F&value=30" });
     }
 
-    let result;
+    const unidade = from.toUpperCase();
+    const destino = to.toUpperCase();
 
-    if (from === "C" && to === "F") {
-        result = (num * 9/5) + 32;
-    } else if (from === "F" && to === "C") {
-        result = (num - 32) * 5/9;
-    } else {
-        return res.status(400).json({ error: "Conversão inválida. Use C↔F." });
+    let celsius;
+
+    switch (unidade) {
+        case "C": celsius = num; break;
+        case "F": celsius = (num - 32) * 5/9; break;
+        case "K": celsius = num - 273.15; break;
+        case "R": celsius = (num - 491.67) * 5/9; break;
+        default:
+            return res.status(400).json({ error: "Unidade de origem inválida. Use C, F, K ou R." });
+    }
+
+    let resultado;
+
+    switch (destino) {
+        case "C": resultado = celsius; break;
+        case "F": resultado = (celsius * 9/5) + 32; break;
+        case "K": resultado = celsius + 273.15; break;
+        case "R": resultado = (celsius * 9/5) + 491.67; break;
+        default:
+            return res.status(400).json({ error: "Unidade de destino inválida. Use C, F, K ou R." });
     }
 
     res.json({
         tipo: "temperatura",
-        from,
-        to,
+        from: unidade,
+        to: destino,
         valor: num,
-        resultado: result
+        resultado
     });
 }
 
@@ -76,15 +87,23 @@ function converterDistancia(req, res) {
         return res.status(400).json({ error: "Use: /dist?from=km&to=mi&value=10" });
     }
 
-    let result;
+    const fatores = {
+        km: 1000,     
+        m: 1,
+        cm: 0.01,
+        mm: 0.001,
+        mi: 1609.34,
+        ft: 0.3048
+    };
 
-    if (from === "km" && to === "mi") {
-        result = num * 0.621371;
-    } else if (from === "mi" && to === "km") {
-        result = num / 0.621371;
-    } else {
-        return res.status(400).json({ error: "Conversão inválida. Use km↔mi." });
+    if (!fatores[from] || !fatores[to]) {
+        return res.status(400).json({
+            error: "Unidade inválida. Suporte: km, m, cm, mm, mi, ft"
+        });
     }
+
+    const metros = num * fatores[from];
+    const result = metros / fatores[to];
 
     res.json({
         tipo: "distância",
@@ -95,23 +114,33 @@ function converterDistancia(req, res) {
     });
 }
 
+
 function converterPeso(req, res) {
     const { from, to, value } = req.query;
     const num = parseFloat(value);
 
     if (!from || !to || isNaN(num)) {
-        return res.status(400).json({ error: "Use: /peso?from=kg&to=lb&value=50" });
+        return res.status(400).json({
+            error: "Use: /peso?from=kg&to=lb&value=50"
+        });
     }
 
-    let result;
+    const fatores = {
+        kg: 1000,
+        g: 1,
+        mg: 0.001,
+        lb: 453.592,
+        oz: 28.3495
+    };
 
-    if (from === "kg" && to === "lb") {
-        result = num * 2.20462;
-    } else if (from === "lb" && to === "kg") {
-        result = num / 2.20462;
-    } else {
-        return res.status(400).json({ error: "Conversão inválida. Use kg↔lb." });
+    if (!fatores[from] || !fatores[to]) {
+        return res.status(400).json({
+            error: "Unidade inválida. Suporte: kg, g, mg, lb, oz"
+        });
     }
+
+    const gramas = num * fatores[from];
+    const result = gramas / fatores[to];
 
     res.json({
         tipo: "peso",
@@ -121,6 +150,7 @@ function converterPeso(req, res) {
         resultado: result
     });
 }
+
 
 module.exports = {
     converterMoeda,

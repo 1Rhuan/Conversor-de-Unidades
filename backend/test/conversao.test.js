@@ -18,6 +18,9 @@ describe('API de Conversões', () => {
         sinon.restore();
     });
 
+    // ------------------------
+    //  MOEDAS
+    // ------------------------
     describe('GET /api/moedas', () => {
         it('deve converter USD para BRL com sucesso', async () => {
             const res = await request(app)
@@ -32,9 +35,13 @@ describe('API de Conversões', () => {
                 .get('/api/moedas?from=USD');
 
             expect(res.status).to.equal(400);
+            expect(res.body).to.have.property('error');
         });
     });
 
+    // ------------------------
+    //  TEMPERATURA
+    // ------------------------
     describe('GET /api/temp', () => {
         it('deve converter Celsius para Fahrenheit', async () => {
             const res = await request(app)
@@ -51,6 +58,14 @@ describe('API de Conversões', () => {
             expect(res.status).to.equal(200);
         });
 
+        it('deve converter Kelvin para Celsius (novo)', async () => {
+            const res = await request(app)
+                .get('/api/temp?from=K&to=C&value=300');
+
+            expect(res.status).to.equal(200);
+            expect(res.body).to.have.property('resultado');
+        });
+
         it('deve falhar se faltar valor', async () => {
             const res = await request(app)
                 .get('/api/temp?from=C&to=F');
@@ -59,10 +74,20 @@ describe('API de Conversões', () => {
         });
     });
 
+    // ------------------------
+    //  DISTÂNCIA
+    // ------------------------
     describe('GET /api/dist', () => {
         it('deve converter Km para Milhas', async () => {
             const res = await request(app)
                 .get('/api/dist?from=km&to=mi&value=10');
+
+            expect(res.status).to.equal(200);
+        });
+
+        it('deve converter Metros para Km (novo)', async () => {
+            const res = await request(app)
+                .get('/api/dist?from=m&to=km&value=1500');
 
             expect(res.status).to.equal(200);
         });
@@ -75,6 +100,9 @@ describe('API de Conversões', () => {
         });
     });
 
+    // ------------------------
+    //  PESO
+    // ------------------------
     describe('GET /api/peso', () => {
         it('deve converter Kg para Libras', async () => {
             const res = await request(app)
@@ -86,6 +114,13 @@ describe('API de Conversões', () => {
         it('deve converter Libras para Kg', async () => {
             const res = await request(app)
                 .get('/api/peso?from=lb&to=kg&value=10');
+
+            expect(res.status).to.equal(200);
+        });
+
+        it('deve converter g para oz (novo)', async () => {
+            const res = await request(app)
+                .get('/api/peso?from=g&to=oz&value=500');
 
             expect(res.status).to.equal(200);
         });
