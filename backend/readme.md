@@ -15,50 +15,59 @@ Fluxo:
 
 ## Endpoints
 
-### Listar tipos de medida
-GET /api/unidades
+### Conversor de Moedas
+GET /api/moedas
 
-Exemplo de resposta:
-```json
-[
-  "Peso",
-  "Moeda",
-  "Temperatura"
-]
+Exemplo de resposta
 ```
-
-### Listar unidades de um tipo
-O tipo deve ser passado na URL.
-
-GET /api/unidades/:tipo
-
-Exemplo:
-GET /api/unidades/peso
-
-Exemplo de resposta:
-```json
-[
-  "Libras",
-  "Kg",
-  "Gramas"
-]
-```
-
-### Converter um valor entre duas unidades compatíveis
-Recomendação de query params: from, to e value.
-
-GET /api/unidades/:tipo/convert?from=Kg&to=Libras&value=1
-
-Exemplo:
-GET /api/unidades/peso/convert?from=Kg&to=Libras&value=1
-
-Exemplo de resposta:
-```json
 {
-  "resultado": 2.20462
+  "from": "USD",
+  "to": "BRL",
+  "amount": "10",
+  "resultado": 55.20
 }
 ```
+### Conversor de Temperatura
+GET /temp?from=C&to=F&value=30
 
+Exemplo de Resposta
+```
+{
+  "tipo": "temperatura",
+  "from": "C",
+  "to": "F",
+  "valor": 30,
+  "resultado": 86
+}
+```
+### Conversor de Distancia
+GET /dist?from=km&to=mi&value=10
+
+Exemplo de resposta
+```
+{
+  "tipo": "distância",
+  "from": "km",
+  "to": "mi",
+  "valor": 10,
+  "resultado": 6.21371
+}
+
+```
+### Conversor de Peso 
+GET /peso?from=kg&to=lb&value=50
+
+Exemplo de Resposta
+```
+{
+  "tipo": "peso",
+  "from": "kg",
+  "to": "lb",
+  "valor": 50,
+  "resultado": 110.231
+}
+
+```
 ## Boas práticas sugeridas
 - Validar parâmetros (tipo e unidades) no backend para evitar conversões incompatíveis.
 - Tratar unidades e tipos de forma case-insensitive.
