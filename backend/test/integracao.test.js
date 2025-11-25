@@ -16,11 +16,11 @@ describe("Testes de integração da API", () => {
         sinon.restore();
     });
 
-    describe("GET /api/moedas", () => {
+    describe("GET /api/moeda", () => {
 
         it("deve converter USD para BRL", async () => {
             const res = await request(app)
-                .get("/api/moedas?from=USD&to=BRL&amount=10");
+                .get("/api/moeda?from=USD&to=BRL&amount=10");
 
             expect(res.status).to.equal(200);
             expect(res.body).to.have.property("resultado");
@@ -28,7 +28,7 @@ describe("Testes de integração da API", () => {
         });
 
         it("deve falhar sem parâmetros", async () => {
-            const res = await request(app).get("/api/moedas");
+            const res = await request(app).get("/api/moeda");
 
             expect(res.status).to.equal(400);
             expect(res.body).to.have.property("error");
