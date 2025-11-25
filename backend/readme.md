@@ -16,7 +16,7 @@ Fluxo:
 ## Endpoints
 
 ### Conversor de Moedas
-GET /api/moedas
+GET /api/moeda
 
 Exemplo de resposta
 ```
