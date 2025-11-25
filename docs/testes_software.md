@@ -312,7 +312,7 @@ npm run test:coverage
 
 ### Recomendações de Melhoria
 
-1. Aumentar cobertura das linhas 55-57, 65-68 (conversões de temperatura Rankine)
+1. Aumentar cobertura das linhas 55-57, 65-68 (tratamento de erros para unidades inválidas de temperatura)
 2. Adicionar testes de performance/carga
 3. Implementar testes E2E com Cypress/Playwright para o frontend
 4. Adicionar testes de regressão automatizados
