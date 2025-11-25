@@ -51,4 +51,4 @@
 
 # Outros arquivos gerados / lockfiles de pacote normalmente não são ignorados
 # (ex.: package-lock.json, yarn.lock) — remova a linha abaixo se quiser ignorá-los:
-#/backend/package-lock.json
+/backend/package-lock.json
