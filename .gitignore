@@ -1,0 +1,54 @@
+#
+
+# Dependências
+/backend/node_modules/
+
+# Build / bundles / output
+/backend/dist/
+/backend/build/
+/backend/out/
+/backend/lib/
+/backend/.next/
+/backend/.parcel-cache/
+/backend/.vercel/
+/backend/.turbo/
+
+# Logs
+/backend/npm-debug.log*
+/backend/yarn-debug.log*
+/backend/pnpm-debug.log*
+/backend/*.log
+
+# Environment / segredos
+/backend/.env
+/backend/.env.local
+/backend/.env.*.local
+# Mantenha exemplos de env caso existam
+!/backend/.env.example
+
+# Testes / coverage
+/backend/coverage/
+/backend/.nyc_output/
+/backend/test-results/
+/backend/junit.xml
+
+# Cache / temp / runtime
+/backend/.cache/
+/backend/tmp/
+/backend/temp/
+/backend/pids/
+/backend/sockets/
+/backend/.serverless/
+
+# IDE / Editor
+/backend/.vscode/
+/backend/.idea/
+/backend/.history/
+
+# OS files
+/backend/.DS_Store
+/backend/Thumbs.db
+
+# Outros arquivos gerados / lockfiles de pacote normalmente não são ignorados
+# (ex.: package-lock.json, yarn.lock) — remova a linha abaixo se quiser ignorá-los:
+#/backend/package-lock.json
