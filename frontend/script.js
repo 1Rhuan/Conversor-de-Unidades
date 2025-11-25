@@ -48,7 +48,7 @@ document
         "Preencha todos os campos!";
       return;
     }
-    if (t === "moedas") url += `moedas?from=${from}&to=${to}&amount=${value}`;
+    if (t === "moedas") url += `moeda?from=${from}&to=${to}&amount=${value}`;
     if (t === "temp") url += `temp?from=${from}&to=${to}&value=${value}`;
     if (t === "dist") url += `dist?from=${from}&to=${to}&value=${value}`;
     if (t === "peso") url += `peso?from=${from}&to=${to}&value=${value}`;
