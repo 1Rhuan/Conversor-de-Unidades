@@ -60,39 +60,20 @@ Estilos globais da aplicação. Inclui:
 
 ## Como Abrir o Projeto
 
-### Opção 1: Diretamente pelo Navegador
+### 1: Diretamente pelo Navegador
 
 1. Abra o arquivo `index.html` diretamente no navegador (duplo clique ou arraste para o navegador)
 2. **Nota:** Essa opção requer que o backend esteja rodando em `http://localhost:8080`
 
-### Opção 2: Usando o Backend (Recomendado)
-
-O backend serve os arquivos do frontend automaticamente:
+### 2: Iniciando Backend
 
 ```bash
 # Na pasta backend/
 npm install
-npm start
+node index.js
 ```
 
 Acesse `http://localhost:8080` no navegador.
-
-### Opção 3: Servidor HTTP Simples
-
-Se preferir usar um servidor local para o frontend:
-
-```bash
-# Usando Python 3
-cd frontend
-python -m http.server 3000
-
-# Ou usando Node.js (npx)
-npx http-server . -p 3000
-```
-
-Acesse `http://localhost:3000` no navegador.
-
----
 
 ## Páginas Disponíveis
 
