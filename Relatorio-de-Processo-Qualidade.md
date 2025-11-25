@@ -149,7 +149,7 @@ pie title Distribuição de linhas de código por tipo
 "JavaScript (6 arquivos) — 301 LOC" : 301
 "CSS (1 arquivo) — 190 LOC" : 190
 "HTML (2 arquivos) — 165 LOC" : 165
-"Markdown (4 arquivos) — 420 LOC" : 397
+"Markdown (4 arquivos) — 397 LOC" : 397
 ```
 - Detalhe por arquivo .js:
   - backend/controllers/conversaoController.js — 104 LOC
